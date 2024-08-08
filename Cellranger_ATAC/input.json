@@ -1,0 +1,20 @@
+{
+    "CellrangerATAC.nosecondary": false,
+    "CellrangerATAC.localcores": 8,
+    "CellrangerATAC.localmem": "64G",
+    "CellrangerATAC.localvmem": "128G",
+    "CellrangerATAC.sid": "sample123",
+    "CellrangerATAC.fastq_tar": "/path/to/fastq_files.tar.gz",
+    "CellrangerATAC.ref_tar": "/path/to/reference_genome.tar.gz",
+    "CellrangerATAC.aggr_id": "aggr123",
+    "CellrangerATAC.data_tar": "/path/to/data_files.tar.gz",
+    "CellrangerATAC.aggr_csv_file": "/path/to/aggregation_list.csv",
+    "CellrangerATAC.norm_type": "log1p",
+    "CellrangerATAC.memory_count": 64,
+    "CellrangerATAC.cpu_count": 16,
+    "CellrangerATAC.storage_count": 500,
+    "CellrangerATAC.memory_aggr": 64,
+    "CellrangerATAC.cpu_aggr": 16,
+    "CellrangerATAC.storage_aggr": 500
+}
+
