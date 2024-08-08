@@ -1,0 +1,22 @@
+{
+  "Cellranger.ref_tar": "/path/to/reference_genome.tar.gz",
+  "Cellranger.aggr.base": "aggregation_base_name",
+  "Cellranger.storage_aggr": 100,
+  "Cellranger.sid": "sample_id",
+  "Cellranger.aggr_csv_file": "/path/to/aggregation_file.csv",
+  "Cellranger.memory_aggr": 16,
+  "Cellranger.cpu_count": 8,
+  "Cellranger.fastq_tar": "/path/to/fastq_files.tar.gz",
+  "Cellranger.localmem": "16G",
+  "Cellranger.data_tar": "/path/to/data_files.tar.gz",
+  "Cellranger.count.base": "count_base_name",
+  "Cellranger.aggr_id": "aggregation_id",
+  "Cellranger.localvmem": "32G",
+  "Cellranger.norm_type": "default",
+  "Cellranger.storage_count": 200,
+  "Cellranger.localcores": 4,
+  "Cellranger.cpu_aggr": 8,
+  "Cellranger.memory_count": 32,
+  "Cellranger.nosecondary": true
+}
+
