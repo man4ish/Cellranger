@@ -54,7 +54,7 @@ task count {
         echo $ref_file_path
 
         # Construct Cell Ranger ATAC command
-        cmd="atac --id=${sid} --fastqs=$fastq_path --reference=$ref_path"
+        cmd="cellranger-atac count --id=${sid} --fastqs=$fastq_path --reference=$ref_path"
         
         # Add optional parameters to the command if specified
         if ${nosecondary}; then cmd+=" --nosecondary"; fi
@@ -64,7 +64,7 @@ task count {
         echo $cmd
 
         # Run the Cell Ranger ATAC command
-        /cellranger_atac/bin/cellranger $cmd
+        /cellranger_atac/bin/cellranger-atac $cmd
         
         # Package the results
         tar -czvf ${base}_result.tar.gz "$ref_file_path/${sid}"
@@ -137,15 +137,13 @@ task aggr {
         mv ${aggr_csv_file}.tmp ${aggr_csv_file}
 
         # Construct Cell Ranger ATAC aggregation command
-        ref_path=$(realpath ${aggr_csv_file})
-        ref_file_path="$(dirname $ref_path)"
-        cmd="aggr --id=${aggr_id} --csv=${aggr_csv_file}"
+        cmd="cellranger-atac aggr --id=${aggr_id} --csv=${aggr_csv_file}"
         
         # Add optional normalization type to the command if specified
         if [ -n "${norm_type}" ]; then cmd+=" --norm_type ${norm_type}"; fi
         
         # Run the Cell Ranger ATAC aggregation command
-        /cellranger_atac/bin/cellranger $cmd
+        /cellranger_atac/bin/cellranger-atac $cmd
         
         # Package the results
         tar -czvf ${base}_result.tar.gz "$data_file_path/${aggr_id}"
