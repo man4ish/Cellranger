@@ -80,7 +80,7 @@ task count {
         memory: memory_count + "G"
         cpu: cpu_count
         disk: storage_count + "GB"
-        docker: "docker.io/man4ish/cellranger:latest"
+        docker: "cellranger_atac:latest"  # Updated Docker image
     }
 }
 
@@ -161,7 +161,7 @@ task aggr {
         memory: memory_aggr + "G"
         cpu: cpu_aggr
         disk: storage_aggr + "GB"
-        docker: "docker.io/man4ish/cellranger:latest"
+        docker: "cellranger_atac:latest"  # Updated Docker image
     }
 }
 
