@@ -64,7 +64,7 @@ task count {
         echo $cmd
 
         # Run the Cell Ranger ATAC command
-        /software/reboot-utils/cellranger/bin/cellranger $cmd
+        /cellranger_atac/bin/cellranger $cmd
         
         # Package the results
         tar -czvf ${base}_result.tar.gz "$ref_file_path/${sid}"
@@ -145,7 +145,7 @@ task aggr {
         if [ -n "${norm_type}" ]; then cmd+=" --norm_type ${norm_type}"; fi
         
         # Run the Cell Ranger ATAC aggregation command
-        /software/reboot-utils/cellranger/bin/cellranger $cmd
+        /cellranger_atac/bin/cellranger $cmd
         
         # Package the results
         tar -czvf ${base}_result.tar.gz "$data_file_path/${aggr_id}"
@@ -213,4 +213,3 @@ workflow CellrangerATAC {
             storage_aggr=storage_aggr
     }
 }
-
