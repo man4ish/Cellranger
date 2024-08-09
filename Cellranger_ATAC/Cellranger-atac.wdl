@@ -1,4 +1,3 @@
-# Task to process raw sequencing data using Cell Ranger ATAC
 task count {
     input {
         # Optional parameters
@@ -64,7 +63,7 @@ task count {
         echo $cmd
 
         # Run the Cell Ranger ATAC command
-        /cellranger_atac/bin/cellranger-atac $cmd
+        /software/reboot-utils/cellranger/bin/cellranger-atac $cmd
         
         # Package the results
         tar -czvf ${base}_result.tar.gz "$ref_file_path/${sid}"
@@ -80,11 +79,10 @@ task count {
         memory: memory_count + "G"
         cpu: cpu_count
         disk: storage_count + "GB"
-        docker: "cellranger_atac:latest"  # Updated Docker image
+        docker: "docker.io/man4ish/cellranger:latest"
     }
 }
 
-# Task to aggregate results from multiple Cell Ranger ATAC outputs
 task aggr {
     input {
         # Required parameters
@@ -137,13 +135,15 @@ task aggr {
         mv ${aggr_csv_file}.tmp ${aggr_csv_file}
 
         # Construct Cell Ranger ATAC aggregation command
+        ref_path=$(realpath ${aggr_csv_file})
+        ref_file_path="$(dirname $ref_path)"
         cmd="cellranger-atac aggr --id=${aggr_id} --csv=${aggr_csv_file}"
         
         # Add optional normalization type to the command if specified
         if [ -n "${norm_type}" ]; then cmd+=" --norm_type ${norm_type}"; fi
         
         # Run the Cell Ranger ATAC aggregation command
-        /cellranger_atac/bin/cellranger-atac $cmd
+        /software/reboot-utils/cellranger/bin/cellranger-atac $cmd
         
         # Package the results
         tar -czvf ${base}_result.tar.gz "$data_file_path/${aggr_id}"
@@ -159,11 +159,10 @@ task aggr {
         memory: memory_aggr + "G"
         cpu: cpu_aggr
         disk: storage_aggr + "GB"
-        docker: "cellranger_atac:latest"  # Updated Docker image
+        docker: "docker.io/man4ish/cellranger:latest"
     }
 }
 
-# Workflow to execute the Cell Ranger ATAC count and aggregation tasks
 workflow CellrangerATAC {
     input {
         # Inputs for both tasks
